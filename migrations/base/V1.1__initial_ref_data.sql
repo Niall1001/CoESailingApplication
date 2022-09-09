@@ -18,10 +18,10 @@ VALUES ('Lizante', '1967', 'NHC 1', '2007', 'Jeanneau Sun Oddessey');
 INSERT INTO boat(name, sailno, class, age, description)
 VALUES ('Beeste', '13842', 'IRC 2', '2005', 'Hunter Impala'); 
 
-INSERT INTO event(name, type, date, description)
-VALUES ('EDYC Club Race 3', 'Club Race', '2022-06-24', 'Third Event of club racing'); 
-INSERT INTO event(name, type, date, description)
-VALUES ('SLYC Regatta', 'Regatta', '2022-05-13', 'SLYC Regatta Event'); 
+INSERT INTO event(name, type, date, description, status)
+VALUES ('EDYC Club Race 3', 'Club Race', '2022-06-24', 'Third Event of club racing', '3'); 
+INSERT INTO event(name, type, date, description, status)
+VALUES ('SLYC Regatta', 'Regatta', '2022-05-13', 'SLYC Regatta Event', '3'); 
 
 INSERT INTO boat_owner(boat_id, user_id)
 VALUES ((select id from boat where name = 'Lizante'), (select id from app_user where name = 'James Regan')); 

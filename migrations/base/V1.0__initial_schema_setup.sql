@@ -24,7 +24,8 @@ id serial primary key,
 name VARCHAR(255) NOT NULL, 
 type VARCHAR(100) NOT NULL, 
 date DATE NOT NULL, 
-description VARCHAR(255) NOT NULL 
+description VARCHAR(255) NOT NULL,
+status int NOT NULL
 ); 
 
  
