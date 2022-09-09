@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS public.user ( 
+CREATE TABLE app_user( 
 id serial primary key, 
 name VARCHAR(255) NOT NULL, 
 email_address VARCHAR(255) NOT NULL, 
@@ -8,7 +8,7 @@ password VARCHAR(255) NOT NULL
 
  
 
-CREATE TABLE IF NOT EXISTS public.boat( 
+CREATE TABLE boat( 
 id serial primary key, 
 name VARCHAR(255) NOT NULL, 
 sailno VARCHAR(100) NOT NULL,  
@@ -19,7 +19,7 @@ description VARCHAR(255) NOT NULL
 
  
 
-CREATE TABLE IF NOT EXISTS public.event( 
+CREATE TABLE event( 
 id serial primary key, 
 name VARCHAR(255) NOT NULL, 
 type VARCHAR(100) NOT NULL, 
@@ -29,48 +29,48 @@ description VARCHAR(255) NOT NULL
 
  
 
-CREATE TABLE IF NOT EXISTS public.boat_owner ( 
+CREATE TABLE boat_owner( 
 id serial primary key, 
-boat_id integer REFERENCES public.boat(id), 
-user_id integer REFERENCES public.user(id) 
+boat_id integer REFERENCES boat(id), 
+user_id integer REFERENCES app_user(id) 
 ); 
 
  
 
-CREATE TABLE IF NOT EXISTS public.crewmate( 
+CREATE TABLE crewmate( 
 id serial primary key, 
-user_id integer REFERENCES public.user(id) 
+user_id integer REFERENCES app_user(id) 
 ); 
 
  
 
-CREATE TABLE IF NOT EXISTS public.admin( 
+CREATE TABLE admin( 
 id serial primary key, 
-user_id integer REFERENCES public.user(id) 
+user_id integer REFERENCES app_user(id) 
 ); 
 
  
 
-CREATE TABLE IF NOT EXISTS public.boat_crewmate( 
+CREATE TABLE boat_crewmate( 
 id serial primary key, 
-boat_id integer REFERENCES public.boat(id), 
-crewmate_id integer REFERENCES public.crewmate(id) 
+boat_id integer REFERENCES boat(id), 
+crewmate_id integer REFERENCES crewmate(id) 
 ); 
 
  
 
-CREATE TABLE IF NOT EXISTS public.event_admin( 
+CREATE TABLE event_admin( 
 id serial primary key, 
-event_id integer REFERENCES public.event(id), 
-admin_id integer REFERENCES public.admin(id) 
+event_id integer REFERENCES event(id), 
+admin_id integer REFERENCES admin(id) 
 ); 
 
  
 
-CREATE TABLE IF NOT EXISTS public.event_boat( 
+CREATE TABLE event_boat( 
 id serial primary key, 
-boat_id integer REFERENCES public.boat (id), 
-event_id integer REFERENCES public.event (id), 
+boat_id integer REFERENCES boat (id), 
+event_id integer REFERENCES event (id), 
 position integer NULL, 
 time time NULL 
 ); 
