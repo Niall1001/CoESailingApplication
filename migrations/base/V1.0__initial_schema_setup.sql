@@ -4,7 +4,7 @@ name VARCHAR(255) NOT NULL,
 email_address VARCHAR(255) NOT NULL, 
 dob DATE NOT NULL, 
 password VARCHAR(255) NOT NULL 
-); 
+);
 
  
 
@@ -12,10 +12,10 @@ CREATE TABLE boat(
 id serial primary key, 
 name VARCHAR(255) NOT NULL, 
 sailno VARCHAR(100) NOT NULL,  
-class VARCHAR(255) NOT NULL,  
+boatclass VARCHAR(255) NOT NULL,  
 age integer NOT NULL, 
 description VARCHAR(255) NOT NULL 
-); 
+);
 
  
 
@@ -26,7 +26,7 @@ type VARCHAR(100) NOT NULL,
 date DATE NOT NULL, 
 description VARCHAR(255) NOT NULL,
 status int NOT NULL
-); 
+);
 
  
 
@@ -34,21 +34,21 @@ CREATE TABLE boat_owner(
 id serial primary key, 
 boat_id integer REFERENCES boat(id), 
 user_id integer REFERENCES app_user(id) 
-); 
+);
 
  
 
 CREATE TABLE crewmate( 
 id serial primary key, 
 user_id integer REFERENCES app_user(id) 
-); 
+);
 
  
 
 CREATE TABLE admin( 
 id serial primary key, 
 user_id integer REFERENCES app_user(id) 
-); 
+);
 
  
 
