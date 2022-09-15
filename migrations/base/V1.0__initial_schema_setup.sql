@@ -11,10 +11,10 @@ password VARCHAR(255) NOT NULL
 CREATE TABLE boat( 
 id serial primary key, 
 name VARCHAR(255) NOT NULL, 
-sailno VARCHAR(100) NOT NULL,  
-boatclass VARCHAR(255) NOT NULL,  
+sail_no VARCHAR(100) NOT NULL,  
+boat_class VARCHAR(255) NOT NULL,  
 age integer NOT NULL, 
-description VARCHAR(255) NOT NULL 
+description VARCHAR(255) NOT NULL
 );
 
  

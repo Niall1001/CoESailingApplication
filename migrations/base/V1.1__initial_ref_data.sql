@@ -13,9 +13,9 @@ VALUES ('David Maxwell', 'dmaxwell4@gmail.com', '1965-03-06', 'Admin101');
 INSERT INTO app_user (name, email_address, dob, password)
 VALUES ('Stephen Walters', 'walters3147@gmail.com', '1967-08-03', 'Password14'); 
 
-INSERT INTO boat(name, sailno, boatclass, age, description)
+INSERT INTO boat(name, sail_no, boat_class, age, description)
 VALUES ('Lizante', '1967', 'NHC 1', '2007', 'Jeanneau Sun Oddessey'); 
-INSERT INTO boat(name, sailno, boatclass, age, description)
+INSERT INTO boat(name, sail_no, boat_class, age, description)
 VALUES ('Beeste', '13842', 'IRC 2', '2005', 'Hunter Impala'); 
 
 INSERT INTO event(name, type, date, description, status)
