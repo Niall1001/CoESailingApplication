@@ -11,6 +11,7 @@ import com.unosquare.sailingapp.model.BoatViewModel;
 import com.unosquare.sailingapp.model.CreateBoatViewModel;
 import com.unosquare.sailingapp.model.UpdateBoatViewModel;
 import com.unosquare.sailingapp.service.BoatService;
+import com.unosquare.sailingapp.util.ResourceUtility;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -23,7 +24,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -33,6 +33,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(MockitoExtension.class)
 public class BoatControllerTest{
+    private static final String CREATE_BOAT_VALID_JSON
+            = ResourceUtility.generateStringFromResource("requestJson/CreateBoat.json");
     @Fixture
     private List<BoatViewModel> boatViewModelListFixture;
     @Fixture
@@ -93,7 +95,6 @@ public class BoatControllerTest{
 
     @Test
     public void getBoatByID_ReturnsOk() throws Exception{
-
         when(mapperMock.map(boatDTOFixture, BoatViewModel.class)).thenReturn(boatViewModelFixture);
         when(boatServiceMock.getBoatByID(anyInt())).thenReturn(boatDTOFixture);
 
@@ -105,26 +106,29 @@ public class BoatControllerTest{
 
     @Test
     public void createBoat_ReturnsOk() throws Exception{
-        when(mapperMock.map(Optional.of(createBoatViewModelFixture), CreateBoatDTO.class)).thenReturn(createBoatDTOFixture);
+        when(mapperMock.map(any(CreateBoatViewModel.class), any())).thenReturn(createBoatDTOFixture);
         when(boatServiceMock.createBoat(createBoatDTOFixture)).thenReturn(boatDTOFixture);
-        when(mapperMock.map(Optional.of(boatDTOFixture), BoatViewModel.class)).thenReturn(boatViewModelFixture);
+        when(mapperMock.map(boatDTOFixture, BoatViewModel.class)).thenReturn(boatViewModelFixture);
 
         mockMvc.perform(post("/boats/create")
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+                        .content(CREATE_BOAT_VALID_JSON)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON))
+                        .andExpect(status().isCreated());
     }
 
     @Test
     public void updateBoat_ReturnsOk() throws Exception{
-        when(boatServiceMock.updateBoat(anyInt(), updateBoatViewModelFixture)).thenReturn(boatDTOFixture);
+        when(boatServiceMock.updateBoat(anyInt(), any(UpdateBoatViewModel.class))).thenReturn(boatDTOFixture);
 
         mockMvc.perform(put("/boats/1")
-                .content("application/json"))
-                .andExpect(status().isOk());
+                        .content(CREATE_BOAT_VALID_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated());
     }
 
     @Test
-        public void deleteBoat_ReturnsOk() throws Exception{
+        public void deleteBoat_ReturnsNoContent() throws Exception{
 
         mockMvc.perform(delete("/boats/1")
                 .contentType(MediaType.APPLICATION_JSON))

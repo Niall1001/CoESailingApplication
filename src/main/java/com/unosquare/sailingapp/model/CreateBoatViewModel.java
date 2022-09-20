@@ -2,6 +2,7 @@ package com.unosquare.sailingapp.model;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 
 
 @Data
+@NoArgsConstructor
 @Getter
 @Setter
 public class CreateBoatViewModel {
