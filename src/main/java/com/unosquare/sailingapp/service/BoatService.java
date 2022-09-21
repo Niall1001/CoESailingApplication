@@ -48,11 +48,6 @@ public class BoatService {
         return mapper.map(boat, BoatDTO.class);
     }
     public void deleteBoat(final int id){
-        try{
             boatRepository.deleteById(id);
-        }catch(InternalServerErrorException e){
-            throw new InternalServerErrorException("Boat cannot be deleted, Make sure Boat ID exists");
-        }
     }
-
 }

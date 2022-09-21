@@ -35,18 +35,14 @@ public class AppUserService {
 
     public AppUserDTO createAppUser(final CreateAppUserDTO createAppUserDTO){
         final AppUser appUser = mapper.map(createAppUserDTO, AppUser.class);
-        //appUser.setPassword(bCryptPasswordEncoder.encode(createAppUserDTO.getPassword()));
         appUserRepository.save(appUser);
-        return mapper.map(appUser, AppUserDTO.class);
-    }
+        return mapper.map(appUser, AppUserDTO.class);}
 
     public AppUserDTO updateAppUser(final int id, final UpdateAppUserViewModel updateAppUserViewModel){
         final AppUser appUser = appUserRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("App user cannot be found, ensure the user exists before updating."));
         mapper.map(updateAppUserViewModel, appUser);
         appUserRepository.save(appUser);
-        return mapper.map(appUser, AppUserDTO.class);
-    }
+        return mapper.map(appUser, AppUserDTO.class);}
     public void deleteAppUser(final int id){
-        appUserRepository.deleteById(id);
-    }
+        appUserRepository.deleteById(id);}
 }
