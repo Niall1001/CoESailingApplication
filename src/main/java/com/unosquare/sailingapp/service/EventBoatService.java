@@ -26,7 +26,7 @@ public class EventBoatService {
     }
 
     public EventBoatDTO getEventBoatByID(final int id){
-        final Optional<EventBoat> eventBoat = eventBoatRepository.findById(id);
+        final EventBoat eventBoat = eventBoatRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Event Boat Association cannot be found."));
         final EventBoatDTO eventBoatDTO = mapper.map(eventBoat, EventBoatDTO.class);
         return eventBoatDTO;
     }

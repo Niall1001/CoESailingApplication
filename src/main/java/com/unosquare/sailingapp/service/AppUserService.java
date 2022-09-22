@@ -8,12 +8,9 @@ import com.unosquare.sailingapp.exception.ResourceNotFoundException;
 import com.unosquare.sailingapp.model.UpdateAppUserViewModel;
 import com.unosquare.sailingapp.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,8 +33,8 @@ public class AppUserService {
     public AppUserDTO createAppUser(final CreateAppUserDTO createAppUserDTO){
         final AppUser appUser = mapper.map(createAppUserDTO, AppUser.class);
         appUserRepository.save(appUser);
-        return mapper.map(appUser, AppUserDTO.class);}
-
+        return mapper.map(appUser, AppUserDTO.class);
+    }
     public AppUserDTO updateAppUser(final int id, final UpdateAppUserViewModel updateAppUserViewModel){
         final AppUser appUser = appUserRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("App user cannot be found, ensure the user exists before updating."));
         mapper.map(updateAppUserViewModel, appUser);

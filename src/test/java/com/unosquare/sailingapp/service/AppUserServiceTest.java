@@ -79,14 +79,10 @@ public class AppUserServiceTest {
     @Test
     public void getAppUsersByID_ReturnsOk(){
         when(appUserRepositoryMock.findById(id)).thenReturn(Optional.ofNullable(appUserFixture));
-        appUserFixture.setName("Niall Walters");
         when(mapperMock.map(appUserFixture, AppUserDTO.class)).thenReturn(appUserDTOFixture);
-        classUnderTest.getAppUserByID(id).setName("Niall Walters");
 
         assertThat(appUserDTOFixture).isNotNull();
         assertThat(classUnderTest.getAppUserByID(id)).isNotNull();
-        assertThat(classUnderTest.getAppUserByID(id).getName()).isEqualTo(appUserFixture.getName());
-
     }
 
     @Test
